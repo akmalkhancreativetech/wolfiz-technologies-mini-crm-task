@@ -25,17 +25,17 @@
                         @enderror
                     </div>
                     <div class="mt-4">
-                        <x-label for="company_id" :value="__('Company')"/>
-                        <select name="company_id" id="company_id"
+                        <x-label for="company" :value="__('Company')"/>
+                        <select name="company" id="company"
                                 class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
-                            <option value="0">Please Select A Company</option>
+                            <option value=" ">Please Select A Company</option>
                             @if(count($companies))
                                 @foreach($companies as $company)
                                     <option value="{{ $company->id }}" {{ $employee->company->id == $company->id ? 'selected' : '' }}>{{ ucwords($company->name) }}</option>
                                 @endforeach
                             @endif
                         </select>
-                        @error('company_id')
+                        @error('company')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
                     </div>

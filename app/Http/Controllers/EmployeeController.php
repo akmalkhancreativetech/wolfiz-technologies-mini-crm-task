@@ -44,9 +44,18 @@ class EmployeeController extends Controller
         $request->validate([
             'first_name' => ['required'],
             'last_name' => ['required'],
-            'company_id' => ['required', Rule::notIn('0')]
+            'company' => ['required']
         ]);
-        Employee::create($request->all());
+
+        Employee::create(
+            [
+                'first_name' => $request->post('first_name'),
+                'last_name' => $request->post('last_name'),
+                'company_id' => $request->post('company'),
+                'email' => $request->post('email'),
+                'phone' => $request->post('phone')
+            ]
+        );
         return redirect()->route('employees.index')->with('success', 'Employee created successfully');
     }
 
@@ -89,9 +98,15 @@ class EmployeeController extends Controller
         $request->validate([
             'first_name' => ['required'],
             'last_name' => ['required'],
-            'company_id' => ['required', Rule::notIn('0')]
+            'company_id' => ['required']
         ]);
-        $employee->update($request->all());
+        $employee->update([
+            'first_name' => $request->post('first_name'),
+            'last_name' => $request->post('last_name'),
+            'company_id' => $request->post('company'),
+            'email' => $request->post('email'),
+            'phone' => $request->post('phone')
+        ]);
         return redirect()->route('employees.index')->with('success', 'Employee updated successfully');
     }
 
