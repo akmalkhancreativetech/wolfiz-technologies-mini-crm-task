@@ -41,7 +41,11 @@ class CompanyController extends Controller
             'name' => ['required'],
             'email' => ['required']
         ]);
-        Company::create($request->all());
+        Company::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'website' => $request->input('website')
+        ]);
         return redirect()->route('companies.index')->with('success', 'Company created successfully');
     }
 
@@ -85,7 +89,11 @@ class CompanyController extends Controller
             'name' => ['required'],
             'email' => ['required']
         ]);
-        $company->update($request->all());
+        $company->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'website' => $request->input('website')
+        ]);
         return redirect()->route('companies.index')->with('success', 'Company updated successfully');
     }
 

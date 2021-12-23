@@ -49,11 +49,11 @@ class EmployeeController extends Controller
 
         Employee::create(
             [
-                'first_name' => $request->post('first_name'),
-                'last_name' => $request->post('last_name'),
-                'company_id' => $request->post('company'),
-                'email' => $request->post('email'),
-                'phone' => $request->post('phone')
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
+                'company_id' => $request->input('company'),
+                'email' => $request->input('email'),
+                'phone' => $request->input('phone')
             ]
         );
         return redirect()->route('employees.index')->with('success', 'Employee created successfully');
@@ -98,14 +98,14 @@ class EmployeeController extends Controller
         $request->validate([
             'first_name' => ['required'],
             'last_name' => ['required'],
-            'company_id' => ['required']
+            'company' => ['required']
         ]);
         $employee->update([
-            'first_name' => $request->post('first_name'),
-            'last_name' => $request->post('last_name'),
-            'company_id' => $request->post('company'),
-            'email' => $request->post('email'),
-            'phone' => $request->post('phone')
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'company_id' => $request->input('company'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone')
         ]);
         return redirect()->route('employees.index')->with('success', 'Employee updated successfully');
     }
